@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 公共页面的路由文件
+import Login from '../views/Login.vue'
 import HOME from './modules/home'
 import WZ from './modules/wangzhan'
 
@@ -14,6 +15,14 @@ import WZ from './modules/wangzhan'
 const router = new VueRouter({
   mode: 'history',
   routes: [
+    {
+      path:'/',
+      name:'Login',
+      component:Login,
+      meta:{
+        title:'登录'
+      }
+    },
     ...HOME,
     ...WZ,
 

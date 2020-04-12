@@ -1,34 +1,47 @@
 <template>
-  <div>
-    <div class="block" >
+  <el-container>
+    <el-header>
+      <el-row>
+        <TopBar></TopBar>
+      </el-row>
+      <el-row>
+        <MyHeader></MyHeader>
+      </el-row>
+    </el-header>
+    <el-main style="margin-top: 50px">
+      <div>
 
-      <el-rate v-model="value1"  :allow-half="true"></el-rate>
-    </div>
-    <div v-text="count=value1*2===0?'':value1*2"></div>
-    <router-link to="/miaosha">秒杀</router-link>
-    <router-link to="/hottui">热门推荐</router-link>
-    <router-link to="/xiang">产品详情</router-link>
-    <h1>axios请求</h1>
-    <div>
-      <el-button type="primary" @click="userLogin">登录</el-button>
-      <el-button type="primary" @click="getUser">获取用户</el-button>
-    </div>
-  </div>
+
+
+        <h1>axios请求</h1>
+        <div>
+          <el-button type="primary" @click="userLogin">登录</el-button>
+          <el-button type="primary" @click="getUser">获取用户</el-button>
+        </div>
+      </div>
+      <router-link :to="{path:'/miaosha'}">秒杀</router-link>
+      <router-link to="/hottui">热门推荐</router-link>
+      <router-link to="/xiang">产品详情</router-link>
+    </el-main>
+  </el-container>
+
 </template>
 
 <script>
+  import  MyHeader  from '@/components/MyHeader.vue'
+  import  TopBar  from '@/components/TopBar.vue'
   export default {
     name: "caseSix",
     data (){
       return {
-        value1:0,
-        count:'',
+
         user: {},
         token: ''//token,可以放VUEX，本地存储等
       }
     },
-    mounted(){
-      this.value1=1
+    components:{
+      MyHeader,TopBar
+
     },
 
     methods:{
@@ -72,7 +85,8 @@
                 .catch((res)=>{
                   console.log(res)
                 })
-      }
+      },
+
     },
 
   }

@@ -1,7 +1,7 @@
 export default [
 
     {
-        path: '/miaosha',
+        path: '/miaosha/:id',
         name: 'Miaosha',
         component: () => import(/* webpackChunkName: "about" */ '../../components/Miaosha.vue'),
         meta: {

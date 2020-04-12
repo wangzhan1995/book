@@ -59,7 +59,16 @@
                                         <span>￥<span v-text="item.shopPrice"></span></span>
                                         <del>￥<span v-text="item.sourcePrice"></span></del>
                                     </div>
-                                    <span><i class="el-icon-shopping-cart-full"></i>立即抢</span>
+                                    <span v-on:click="addCar(item.id,$event)" ><i class="el-icon-shopping-cart-full"></i>加入购物车</span>
+
+<!--                                      <div>-->
+<!--                                          <div>提示 <i class="el-icon-close"></i></div>-->
+<!--                                          <div>-->
+<!--                                              <div>已成功加入购物车</div>-->
+<!--                                              <div>购物车共有{{carProductCount}}件商品，合计：￥{{}}</div>-->
+<!--                                          </div>-->
+<!--                                          <div></div>-->
+<!--                                      </div>-->
                                 </div>
                             </div>
                         </el-col>
@@ -86,7 +95,8 @@
                             <del>￥<span v-text="item.sourcePrice"></span></del>
                         </div>
                         <div>
-                        <span><i class="el-icon-shopping-cart-full"></i>立即抢</span>
+                        <span v-on:click="addCar(item.id,$event)"><i class="el-icon-shopping-cart-full"></i>加入购物车</span>
+
                         </div>
                     </div>
                 </div>
@@ -176,6 +186,8 @@
             }
         },
         mounted() {
+
+
             let that = this
             setInterval(function () {
                 //得到当天的时间
@@ -230,6 +242,18 @@
             },
             getjavabook(n){//获取后台的书籍
 
+            },
+            //加入购物车
+            addCar(pid,e){
+             console.log(e)
+             console.log(pid)
+               this.$axios({
+                   url:'/api/addcar',
+                   method: 'get',
+                   params: {"pid":pid}
+               }).then(function (res) {
+
+               })
             }
 
         }
@@ -239,6 +263,42 @@
 </script>
 
 <style scoped lang="less">
+    .cart {
+        display: flex;
+        flex-direction: row;
+        padding-left: 15px;
+        margin-top: 25px;
+        align-items: center;
+
+        & > div {
+            padding-right: 10px;
+        }
+
+        & .cart-buy .el-button {
+            color: #ff2832;
+            background-color: #ffedee;
+            border: 1px solid #ff2832;
+            font-size: 16px;
+            padding: 12px 15px;
+
+            &:hover, &:active {
+                color: #ff2832;
+                background-color: rgba(255, 192, 203, 0.69);
+            }
+        }
+    }
+
+    .cart-add .el-button {
+        color: white;
+        background-color: #ff2832;
+        font-size: 16px;
+        padding: 12px 15px;
+
+        &:hover, &:active {
+            color: white;
+            background-color: #f52630;
+        }
+    }
 
     .el-header {
         height: 210px !important;

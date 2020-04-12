@@ -5,7 +5,7 @@ module.exports = {
         proxy: {
             // 拦截请求接口，判断是不是/api开头的，如果是，是使用代理服务器。
             '/api': {
-                target: 'http://106.14.26.32:8080',  //这里是目标服务器地址
+                target: 'http://47.98.250.2:8080/fore',  //这里是目标服务器地址
                 changeOrigin: true,
                 // ws: true,
                 pathRewrite: {
